@@ -2,18 +2,14 @@ package control;
 
 public class Students {
 
-	public static final String NumberCart = null;
-
-	public static int length;
-
-	public static Object setCart;
+	
 
 	String name;
 	private int age;
 	private int well;
 	private int cart;
 
-	public boolean egualsCard;
+	
 
 	public Object getCart;
 
