@@ -2,14 +2,10 @@ package control;
 
 public class Students {
 
-	
-
 	String name;
 	private int age;
 	private int well;
 	private int cart;
-
-	
 
 	public Object getCart;
 
@@ -52,7 +48,7 @@ public class Students {
 	}
 
 	public void setCart(int cart) {
-	this.cart=cart;
+		this.cart = cart;
 
 	}
 
@@ -61,17 +57,16 @@ public class Students {
 	}
 
 	public String getFullDescription() {
-		return name + "|" + age + "|" + well+"|"+cart;
+		return name + "|" + age + "|" + well + "|" + cart;
 	}
+
 	public String setFullDescription() {
-		return name + "|" + age + "|" + well+"|"+cart;
+		return name + "|" + age + "|" + well + "|" + cart;
 	}
 
 	public char[] setchangeStudents() {
-		
+
 		return null;
 	}
 
-  }
-
-
+}
