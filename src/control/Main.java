@@ -6,12 +6,13 @@ import java.util.Scanner;
 public class Main {
 	static ArrayList<Students> studentList = new ArrayList<>();
 
-	static Scanner scanner;
+	static Scanner scannerforStr;
+	static Scanner scannerforInt;
 
 	public static void main(String args[]) {
 		initArray();
-
-		scanner = new Scanner(System.in).useDelimiter("\n");
+		scannerforInt = new Scanner(System.in).useDelimiter("\n");
+		scannerforStr = new Scanner(System.in).useDelimiter("\n");
 
 		int command = 0;
 
@@ -38,7 +39,7 @@ public class Main {
 			}
 		}
 
-		scanner.close();
+		scannerforStr.close();
 
 	}
 
@@ -63,11 +64,11 @@ public class Main {
 	public static int getCommand() {
 		System.out.println("Enter command:");
 		int command;
-		if (scanner.hasNext()) {
-			command = scanner.nextInt();
+		if (scannerforInt.hasNext()) {
+			command = scannerforInt.nextInt();
 		} else {
 			System.out.println("Error, try again");
-			scanner.next();
+			scannerforInt.next();
 			command = getCommand();
 		}
 		return command;
@@ -77,19 +78,19 @@ public class Main {
 
 		System.out.println("Enter name: ");
 
-		String name = scanner.hasNext() ? scanner.next() : "";
+		String name = scannerforStr.hasNext() ? scannerforStr.next() : "";
 
 		System.out.println("Enter well: ");
 
-		int well = scanner.hasNext() ? scanner.nextInt() : 0;
+		int well = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 		System.out.println("Enter age: ");
 
-		int age = scanner.hasNext() ? scanner.nextInt() : 0;
+		int age = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 		System.out.println("Enter number cart");
 
-		int cart = scanner.hasNext() ? scanner.nextInt() : 0;
+		int cart = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 		Students s2 = new Students(name, age, well, cart);
 
@@ -105,7 +106,7 @@ public class Main {
 
 	static void deleteStudents(ArrayList<Students> array) {
 		System.out.print("Enter the card number of the student to be deleted:");
-		int cart = scanner.nextInt();
+		int cart = scannerforInt.nextInt();
 
 		int positionForDelete = -1;
 
@@ -132,7 +133,7 @@ public class Main {
 	public static void findStudents() {
 
 		System.out.print("Enter number cart");
-		int cart = scanner.nextInt();
+		int cart = scannerforInt.nextInt();
 		@SuppressWarnings("unused")
 		int cartNumber = cart;
 		@SuppressWarnings("unused")
@@ -150,8 +151,8 @@ public class Main {
 
 		System.out.print("Enter number cart for change student details");
 		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		int cart = scanner.nextInt();
+		// Scanner scanner = new Scanner(System.in);
+		int cart = scannerforInt.nextInt();
 		@SuppressWarnings("unused")
 		int cartNumber = cart;
 		@SuppressWarnings("unused")
@@ -160,36 +161,26 @@ public class Main {
 			if (studentList.get(i).getCart() == cart) {
 
 				System.out.print("Enter new name:");
-				@SuppressWarnings({ "unused", "resource" })
-				Scanner in1 = new Scanner(System.in);
-				@SuppressWarnings({ "unused", "resource" })
-				Scanner scanner1 = new Scanner(System.in).useDelimiter("\n");
-
-				String name1 = scanner.hasNext() ? scanner.nextLine() : "";
-
+				String name1 = scannerforStr.hasNext() ? scannerforStr.nextLine() : "";
 				studentList.get(i).setName(name1);
-
 				System.out.print("Enter new age:");
+				int age = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 				@SuppressWarnings("resource")
-				Scanner scanner12 = new Scanner(System.in);
-				int age = scanner12.hasNext() ? scanner12.nextInt() : 0;
-				@SuppressWarnings("resource")
-				Scanner scanner14 = new Scanner(System.in).useDelimiter("\n");
-				
+				Scanner scannerforInt = new Scanner(System.in).useDelimiter("\n");
 
 				studentList.get(i).setAge(age);
 
 				System.out.println("Enter new well");
 
-				int well = scanner14.hasNext() ? scanner14.nextInt() : 0;
+				int well = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 				studentList.get(i).setWell(well);
 				System.out.println("Enter cart");
-				@SuppressWarnings({ "unused", "resource" })
-				Scanner scanner10 = new Scanner(System.in);
-				@SuppressWarnings({ "unused", "resource" })
-				Scanner scanner11 = new Scanner(System.in).useDelimiter("\n");
-				int cart1 = scanner11.hasNext() ? scanner11.nextInt() : 0;
+				// @SuppressWarnings({ "unused", "resource" })
+				// Scanner scannerforInt = new Scanner(System.in);
+				// @SuppressWarnings({ "unused", "resource" })
+				// Scanner scannerforInt = new Scanner(System.in).useDelimiter("\n");
+				int cart1 = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 				studentList.get(i).setCart(cart1);
 
