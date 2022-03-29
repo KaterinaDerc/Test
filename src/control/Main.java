@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Main {
 	static ArrayList<Students> studentList = new ArrayList<>();
-
 	static Scanner scannerforStr;
 	static Scanner scannerforInt;
 
@@ -13,7 +12,7 @@ public class Main {
 		initArray();
 		scannerforInt = new Scanner(System.in).useDelimiter("\n");
 		scannerforStr = new Scanner(System.in).useDelimiter("\n");
-
+		
 		int command = 0;
 
 		while (command != 5) {
@@ -56,9 +55,9 @@ public class Main {
 		System.out.println("2 - delete student");
 		System.out.println("3 - print all students");
 		System.out.println("4 - find student");
-		System.out.println("6- change students");
 		System.out.println("5 - exit");
-
+		System.out.println("6 - change students");
+        System.out.println("7- show network users");
 	}
 
 	public static int getCommand() {
@@ -134,29 +133,20 @@ public class Main {
 
 		System.out.print("Enter number cart");
 		int cart = scannerforInt.nextInt();
-		@SuppressWarnings("unused")
-		int cartNumber = cart;
-		@SuppressWarnings("unused")
-		int size = 0;
+
 		for (int i = 0; i < studentList.size(); i++) {
 			if (studentList.get(i).getCart() == cart) {
 				System.out.print((studentList.get(i).getFullDescription()));
 				break;
 			}
-
 		}
 	}
 
 	public static void changeStudents(ArrayList<Students> studentList2) {
 
 		System.out.print("Enter number cart for change student details");
-		@SuppressWarnings("resource")
-		// Scanner scanner = new Scanner(System.in);
 		int cart = scannerforInt.nextInt();
-		@SuppressWarnings("unused")
-		int cartNumber = cart;
-		@SuppressWarnings("unused")
-		int size = 0;
+
 		for (int i = 0; i < studentList.size(); i++) {
 			if (studentList.get(i).getCart() == cart) {
 
@@ -165,8 +155,6 @@ public class Main {
 				studentList.get(i).setName(name1);
 				System.out.print("Enter new age:");
 				int age = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
-				@SuppressWarnings("resource")
-				Scanner scannerforInt = new Scanner(System.in).useDelimiter("\n");
 
 				studentList.get(i).setAge(age);
 
@@ -176,10 +164,6 @@ public class Main {
 
 				studentList.get(i).setWell(well);
 				System.out.println("Enter cart");
-				// @SuppressWarnings({ "unused", "resource" })
-				// Scanner scannerforInt = new Scanner(System.in);
-				// @SuppressWarnings({ "unused", "resource" })
-				// Scanner scannerforInt = new Scanner(System.in).useDelimiter("\n");
 				int cart1 = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
 				studentList.get(i).setCart(cart1);
@@ -189,6 +173,9 @@ public class Main {
 
 		}
 
+	}
+	public static void showNetworkUsers() {
+		
 	}
 
 	static void exitApp() {
