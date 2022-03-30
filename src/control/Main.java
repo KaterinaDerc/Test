@@ -1,5 +1,9 @@
 package control;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -174,7 +178,17 @@ public class Main {
 		}
 
 	}
-	public static void showNetworkUsers() {
+	public static void showNetworkUsers() throws IOException {
+		System.out.print("Список пользователей интернета: ");
+		System.out.print("Введите фамилию студента:");
+		String users= scannerforStr.hasNext() ? scannerforStr.next() : "";
+		System.out.println(users);
+		String studentUrl="https://jsonplaceholder.typicode.com/users";
+		System.out.println(studentUrl);
+		URL url=new URL(studentUrl);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        System.out.println("");
+			
 		
 	}
 
