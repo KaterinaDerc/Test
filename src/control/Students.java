@@ -36,7 +36,6 @@ public class Students {
 
 	public void setWell(int well) {
 		this.well = well;
-
 	}
 
 	public int getCart() {
@@ -52,10 +51,6 @@ public class Students {
 	}
 
 	public String getFullDescription() {
-		return name + "|" + age + "|" + well + "|" + cart;
-	}
-
-	public String setFullDescription() {
 		return name + "|" + age + "|" + well + "|" + cart;
 	}
 }

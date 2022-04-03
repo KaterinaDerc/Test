@@ -1,25 +1,31 @@
 package control;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Main {
 	static ArrayList<Students> studentList = new ArrayList<>();
 	static Scanner scannerforStr;
 	static Scanner scannerforInt;
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		initArray();
 		scannerforInt = new Scanner(System.in).useDelimiter("\n");
 		scannerforStr = new Scanner(System.in).useDelimiter("\n");
-		
+
 		int command = 0;
 
-		while (command != 5) {
+		while (command != 7) {
 
 			printMenu();
 			command = getCommand();
@@ -36,6 +42,8 @@ public class Main {
 				changeStudents(studentList);
 			} else if (command == 5) {
 				exitApp();
+			} else if (command == 7) {
+				showNetworkUsers();
 			} else {
 				System.out.println("Unknown command");
 
@@ -43,7 +51,7 @@ public class Main {
 		}
 
 		scannerforStr.close();
-
+		scannerforInt.close();
 	}
 
 	static void initArray() {
@@ -61,7 +69,7 @@ public class Main {
 		System.out.println("4 - find student");
 		System.out.println("5 - exit");
 		System.out.println("6 - change students");
-        System.out.println("7- show network users");
+		System.out.println("7- show network users");
 	}
 
 	public static int getCommand() {
@@ -178,18 +186,56 @@ public class Main {
 		}
 
 	}
+
 	public static void showNetworkUsers() throws IOException {
 		System.out.print("Список пользователей интернета: ");
-		System.out.print("Введите фамилию студента:");
-		String users= scannerforStr.hasNext() ? scannerforStr.next() : "";
-		System.out.println(users);
-		String studentUrl="https://jsonplaceholder.typicode.com/users";
-		System.out.println(studentUrl);
-		URL url=new URL(studentUrl);
+
+		String studentUrl = "https://jsonplaceholder.typicode.com/users";
+
+		URL url = new URL(studentUrl);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        System.out.println("");
-			
-		
+		System.out.println("getResponseCode:" + connection.getResponseCode());
+
+		int responseCode = connection.getResponseCode();
+		if (responseCode == 200) {
+
+			System.out.println("getInputStream");
+
+			InputStream inputStream = connection.getInputStream();
+			InputStreamReader inputReader = new InputStreamReader(inputStream);
+			BufferedReader buffer = new BufferedReader(inputReader);
+			StringBuilder stringBuilder = new StringBuilder();
+
+			String outputFromBuff;
+			while ((outputFromBuff = buffer.readLine()) != null) {
+				stringBuilder.append(outputFromBuff);
+
+			}
+
+			JSONArray jArray = new JSONArray(stringBuilder.toString());
+			for (int i = 0; i < jArray.length(); i++) {
+				JSONObject jUser = jArray.getJSONObject(i);
+
+				String name = jUser.getString("name");
+				int id = jUser.getInt("id");
+				String email = jUser.getString("email");
+				JSONObject jAddress = jUser.getJSONObject("address");
+				String zipcode = jAddress.getString("zipcode");
+				String city = jAddress.getString("city");
+
+				System.out.println(name);
+				System.out.println(id);
+				System.out.println(email);
+				System.out.println("zipcode:" + zipcode);
+				System.out.println("city:" + city);
+
+				System.out.println("");
+
+			}
+
+		} else {
+			System.out.println("no InfoforStudent");
+		}
 	}
 
 	static void exitApp() {
