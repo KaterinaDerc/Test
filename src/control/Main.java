@@ -38,12 +38,12 @@ public class Main {
 				printAllStudent();
 			} else if (command == 4) {
 				findStudents();
+			} else if (command == 5) {
+				showNetworkUsers();
 			} else if (command == 6) {
 				changeStudents(studentList);
-			} else if (command == 5) {
-				exitApp();
 			} else if (command == 7) {
-				showNetworkUsers();
+				exitApp();
 			} else {
 				System.out.println("Unknown command");
 
@@ -67,9 +67,9 @@ public class Main {
 		System.out.println("2 - delete student");
 		System.out.println("3 - print all students");
 		System.out.println("4 - find student");
-		System.out.println("5 - exit");
+		System.out.println("5- show network users");
 		System.out.println("6 - change students");
-		System.out.println("7- show network users");
+		System.out.println("7 - exit");
 	}
 
 	public static int getCommand() {
@@ -199,8 +199,6 @@ public class Main {
 		int responseCode = connection.getResponseCode();
 		if (responseCode == 200) {
 
-			System.out.println("getInputStream");
-
 			InputStream inputStream = connection.getInputStream();
 			InputStreamReader inputReader = new InputStreamReader(inputStream);
 			BufferedReader buffer = new BufferedReader(inputReader);
@@ -223,11 +221,9 @@ public class Main {
 				String zipcode = jAddress.getString("zipcode");
 				String city = jAddress.getString("city");
 
-				System.out.println(name);
-				System.out.println(id);
-				System.out.println(email);
-				System.out.println("zipcode:" + zipcode);
-				System.out.println("city:" + city);
+				System.out.println("");
+
+				System.out.println(name + "|" + id + "|" + email + "|" + "zipcode:" + zipcode + "|" + "city:" + city);
 
 				System.out.println("");
 
@@ -235,10 +231,12 @@ public class Main {
 
 		} else {
 			System.out.println("no InfoforStudent");
+
 		}
 	}
 
 	static void exitApp() {
 		System.out.println("Goodbuy");
+
 	}
 }
