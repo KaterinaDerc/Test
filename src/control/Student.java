@@ -1,16 +1,22 @@
 package control;
 
-public class Students {
+public class Student {
+
+	public Student() {
+
+	}
+
 	private String name;
 	private int age;
 	private int well;
 	private int cart;
 
-	public Students(String name, int age, int well, int cart) {
+	public Student(String name, int age, int well, int cart) {
 		this.name = name;
 		this.age = age;
 		this.well = well;
 		this.cart = cart;
+
 	}
 
 	public String getName() {
@@ -53,4 +59,5 @@ public class Students {
 	public String getFullDescription() {
 		return name + "|" + age + "|" + well + "|" + cart;
 	}
+
 }

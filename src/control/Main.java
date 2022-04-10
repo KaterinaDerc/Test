@@ -14,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Main {
-	static ArrayList<Students> studentList = new ArrayList<>();
+	static ArrayList<Student> studentList = new ArrayList<>();
 	static Scanner scannerforStr;
 	static Scanner scannerforInt;
 
@@ -55,9 +55,9 @@ public class Main {
 	}
 
 	static void initArray() {
-		studentList.add(new Students("Dima", 20, 2, 2020));
-		studentList.add(new Students("Tolia", 20, 1, 2021));
-		studentList.add(new Students("Lilia", 18, 1, 2021));
+		studentList.add(new Student("Dima", 20, 2, 2020));
+		studentList.add(new Student("Tolia", 20, 1, 2021));
+		studentList.add(new Student("Lilia", 18, 1, 2021));
 	}
 
 	static void printMenu() {
@@ -103,7 +103,7 @@ public class Main {
 
 		int cart = scannerforInt.hasNext() ? scannerforInt.nextInt() : 0;
 
-		Students s2 = new Students(name, age, well, cart);
+		Student s2 = new Student(name, age, well, cart);
 
 		studentList.add(s2);
 	}
@@ -115,7 +115,7 @@ public class Main {
 		}
 	}
 
-	static void deleteStudents(ArrayList<Students> array) {
+	static void deleteStudents(ArrayList<Student> array) {
 		System.out.print("Enter the card number of the student to be deleted:");
 		int cart = scannerforInt.nextInt();
 
@@ -123,7 +123,7 @@ public class Main {
 
 		for (int x = 0; x < studentList.size(); x++) {
 
-			Students s = studentList.get(x);
+			Student s = studentList.get(x);
 			if (cart == s.getCart()) {
 				positionForDelete = x;
 				break;
@@ -154,7 +154,7 @@ public class Main {
 		}
 	}
 
-	public static void changeStudents(ArrayList<Students> studentList2) {
+	public static void changeStudents(ArrayList<Student> studentList2) {
 
 		System.out.print("Enter number cart for change student details");
 		int cart = scannerforInt.nextInt();
@@ -223,7 +223,8 @@ public class Main {
 
 				System.out.println("");
 
-				System.out.println(name + "|" + id + "|" + email + "|" + "zipcode:" + zipcode + "|" + "city:" + city);
+				System.out.println((i + 1) + "|" + name + "|" + id + "|" + email + "|" + "zipcode:" + zipcode + "|"
+						+ "city:" + city);
 
 				System.out.println("");
 
