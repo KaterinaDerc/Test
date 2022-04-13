@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 public class Address {
 	private String street;
 	private String city;
@@ -7,15 +9,10 @@ public class Address {
 	private int lat;
 	private int lng;
 
-	public Address(String street, String city, int zipcode, int lat, int lng) {
-		this.setStreet(street);
-		this.setCity(city);
-		this.setZipcode(zipcode);
-		this.setLat(lat);
-		this.setLng(lng);
-
+	public Address(JSONObject jAddress) {
+		this.street = jAddress.getString("street");
 	}
-
+	
 	public String getStreet() {
 		return street;
 	}

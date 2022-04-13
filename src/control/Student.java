@@ -2,10 +2,6 @@ package control;
 
 public class Student {
 
-	public Student() {
-
-	}
-
 	private String name;
 	private int age;
 	private int well;
@@ -16,7 +12,6 @@ public class Student {
 		this.age = age;
 		this.well = well;
 		this.cart = cart;
-
 	}
 
 	public String getName() {

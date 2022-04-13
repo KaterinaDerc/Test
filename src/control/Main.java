@@ -13,7 +13,12 @@ import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sun.tools.javac.util.List;
+
+import model.User;
+
 public class Main {
+
 	static ArrayList<Student> studentList = new ArrayList<>();
 	static Scanner scannerforStr;
 	static Scanner scannerforInt;
@@ -33,7 +38,7 @@ public class Main {
 			if (command == 1) {
 				addStudents();
 			} else if (command == 2) {
-				deleteStudents(studentList);
+				deleteStudents();
 			} else if (command == 3) {
 				printAllStudent();
 			} else if (command == 4) {
@@ -41,7 +46,7 @@ public class Main {
 			} else if (command == 5) {
 				showNetworkUsers();
 			} else if (command == 6) {
-				changeStudents(studentList);
+				changeStudents();
 			} else if (command == 7) {
 				exitApp();
 			} else {
@@ -115,7 +120,7 @@ public class Main {
 		}
 	}
 
-	static void deleteStudents(ArrayList<Student> array) {
+	static void deleteStudents() {
 		System.out.print("Enter the card number of the student to be deleted:");
 		int cart = scannerforInt.nextInt();
 
@@ -154,7 +159,7 @@ public class Main {
 		}
 	}
 
-	public static void changeStudents(ArrayList<Student> studentList2) {
+	public static void changeStudents() {
 
 		System.out.print("Enter number cart for change student details");
 		int cart = scannerforInt.nextInt();
@@ -188,52 +193,20 @@ public class Main {
 	}
 
 	public static void showNetworkUsers() throws IOException {
-		System.out.print("Список пользователей интернета: ");
 
-		String studentUrl = "https://jsonplaceholder.typicode.com/users";
+		Object students = NetworkManager.ListStudentList();
+		
+		for (int i = 0; i < ListStudentList.length(); i++) {
+			JSONObject jUser = ListStudentList.getJSONObject(i);
 
-		URL url = new URL(studentUrl);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		System.out.println("getResponseCode:" + connection.getResponseCode());
+			User user = new User(jUser);
+		
 
-		int responseCode = connection.getResponseCode();
-		if (responseCode == 200) {
-
-			InputStream inputStream = connection.getInputStream();
-			InputStreamReader inputReader = new InputStreamReader(inputStream);
-			BufferedReader buffer = new BufferedReader(inputReader);
-			StringBuilder stringBuilder = new StringBuilder();
-
-			String outputFromBuff;
-			while ((outputFromBuff = buffer.readLine()) != null) {
-				stringBuilder.append(outputFromBuff);
-
-			}
-
-			JSONArray jArray = new JSONArray(stringBuilder.toString());
-			for (int i = 0; i < jArray.length(); i++) {
-				JSONObject jUser = jArray.getJSONObject(i);
-
-				String name = jUser.getString("name");
-				int id = jUser.getInt("id");
-				String email = jUser.getString("email");
-				JSONObject jAddress = jUser.getJSONObject("address");
-				String zipcode = jAddress.getString("zipcode");
-				String city = jAddress.getString("city");
-
-				System.out.println("");
-
-				System.out.println((i + 1) + "|" + name + "|" + id + "|" + email + "|" + "zipcode:" + zipcode + "|"
-						+ "city:" + city);
-
-				System.out.println("");
-
-			}
-
-		} else {
-			System.out.println("no InfoforStudent");
-
+	} else {
+		System.out.println("no InfoforStudent");
+			
 		}
+	
 	}
 
 	static void exitApp() {
