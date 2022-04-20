@@ -5,15 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.sun.tools.javac.util.List;
 
 import model.User;
 
@@ -194,19 +191,41 @@ public class Main {
 
 	public static void showNetworkUsers() throws IOException {
 
-		Object students = NetworkManager.ListStudentList();
-		
-		for (int i = 0; i < ListStudentList.length(); i++) {
-			JSONObject jUser = ListStudentList.getJSONObject(i);
+		String studentUrl = "https://jsonplaceholder.typicode.com/users";
 
-			User user = new User(jUser);
-		
+		URL url = new URL(studentUrl);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		System.out.println("getResponseCode:" + connection.getResponseCode());
 
-	} else {
-		System.out.println("no InfoforStudent");
-			
+		int responseCode = connection.getResponseCode();
+		if (responseCode == 200) {
+
+			InputStream inputStream = connection.getInputStream();
+			InputStreamReader inputReader = new InputStreamReader(inputStream);
+			BufferedReader buffer = new BufferedReader(inputReader);
+			StringBuilder stringBuilder = new StringBuilder();
+
+			String outputFromBuff;
+			while ((outputFromBuff = buffer.readLine()) != null) {
+				stringBuilder.append(outputFromBuff);
+
+			}
+
+			JSONArray jArray = new JSONArray(stringBuilder.toString());
+
+			for (int i = 0; i < jArray.length(); i++) {
+				JSONObject jUser = jArray.getJSONObject(i);
+
+				User user = new User(jUser);
+
+				System.out.print((i + 1) + "|" + user, getFullDescription());
+			}
 		}
-	
+
+		else {
+			System.out.println("no InfoforStudent");
+		}
+
 	}
 
 	static void exitApp() {

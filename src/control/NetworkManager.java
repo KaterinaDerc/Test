@@ -44,7 +44,7 @@ public class NetworkManager {
 			}
 
 			JSONArray jArray = new JSONArray(stringBuilder.toString());
-
+			System.out.print(jArray);
 		}
 	}
 }

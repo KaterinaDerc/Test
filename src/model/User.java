@@ -9,7 +9,7 @@ public class User {
 	private String username;
 	private String email;
 	private Address address;
-	private int phone;
+	private String phone;
 	private String website;
 	private Company company;
 
@@ -19,10 +19,11 @@ public class User {
 		this.username = jUser.getString("username");
 		this.email = jUser.getString("email");
 		this.address = new Address(jUser.getJSONObject("address"));
-		this.phone = jUser.getInt("phone");
+		this.phone = jUser.getString("phone");
 		this.website = jUser.getString("website");
 		this.company = new Company(jUser.getJSONObject("company"));
 	}
+
 
 	public int getId() {
 		return id;
@@ -64,11 +65,11 @@ public class User {
 		this.address = address;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
