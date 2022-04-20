@@ -24,7 +24,6 @@ public class User {
 		this.company = new Company(jUser.getJSONObject("company"));
 	}
 
-
 	public int getId() {
 		return id;
 	}
@@ -89,7 +88,9 @@ public class User {
 		this.company = company;
 	}
 
-	public static void getFullDescription() {
+	public String getFullDescription() {
+		return id + "|" + name + "|" + username + "|" + email + "|" + address + "|" + phone + "|" + website + "|"
+				+ company;
 
 	}
 }
