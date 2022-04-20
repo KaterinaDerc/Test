@@ -218,7 +218,7 @@ public class Main {
 
 				User user = new User(jUser);
 
-				System.out.println(i+ user.getFullDescription());
+				System.out.println(user.getFullDescription());
 			}
 		}
 
