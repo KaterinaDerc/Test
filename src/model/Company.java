@@ -3,11 +3,29 @@ package model;
 import org.json.JSONObject;
 
 public class Company {
-	String name;
-	String catchPhrase;
+	private String name;
+
+	private String catchPhrase;
 
 	public Company(JSONObject jCompany) {
-		this.name = jCompany.getString("name");
-		this.catchPhrase = jCompany.getString("catchPhrase");
+		this.setName(jCompany.getString("name"));
+		this.setCatchPhrase(jCompany.getString("catchPhrase"));
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCatchPhrase() {
+		return catchPhrase;
+	}
+
+	public void setCatchPhrase(String catchPhrase) {
+		this.catchPhrase = catchPhrase;
 	}
 }

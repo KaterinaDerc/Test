@@ -8,11 +8,17 @@ public class Address {
 	private int zipcode;
 	private int lat;
 	private int lng;
+	
+	public char[] getFullDescription;
 
 	public Address(JSONObject jAddress) {
 		this.street = jAddress.getString("street");
+		this.city = jAddress.getString("address");
+		this.zipcode = jAddress.getInt("zipcode");
+		this.lat = jAddress.getInt("lat");
+		this.lng = jAddress.getInt("lng");
 	}
-	
+
 	public String getStreet() {
 		return street;
 	}
