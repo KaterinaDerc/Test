@@ -12,7 +12,8 @@ public class User {
 	private String phone;
 	private String website;
 	private Company company;
-	
+	private Object street;
+
 	public User(JSONObject jUser) {
 		this.id = jUser.getInt("id");
 		this.name = jUser.getString("name");
@@ -22,6 +23,7 @@ public class User {
 		this.phone = jUser.getString("phone");
 		this.website = jUser.getString("website");
 		this.company = new Company(jUser.getJSONObject("company"));
+		// this.street=jUser.getString("street");
 	}
 
 	public int getId() {
@@ -88,10 +90,19 @@ public class User {
 		this.company = company;
 	}
 
+	public Object getStreet() {
+		return street;
+	}
+
+	public void setStreet(Object street) {
+		this.street = street;
+
+	}
+
 	public String getFullDescription() {
 		return ("id:" + id + "|" + "name:" + name + "|" + "username:" + username + "|" + "email:" + email + "|"
-				+ "address:" + address.getFullDescription(email)) + "|" + "phone:" + phone + "|" + "website:" + website + "|" + "company:"
-				+ company.getFullDescription();
+				+ "address:" + address.getFullDescription()) + "|" + "phone:" + phone + "|" + "website:" + website + "|"
+				+ "company:" + company.getFullDescription();
 
 	}
 }

@@ -67,7 +67,7 @@ public class Address {
 		return super.toString();
 	}
 
-	public String getFullDescription(String string) {
+	public String getFullDescription() {
 		return ("street:" + street + "|" + "zipcode:" + zipcode + "|" + "city:" + city + "|" + "lat:" + lat + "|"
 				+ "lng:" + lng);
 	}
