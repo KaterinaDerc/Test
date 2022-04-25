@@ -8,9 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
-
-import model.User;
 
 public class NetworkManager {
 

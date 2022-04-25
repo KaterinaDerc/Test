@@ -18,11 +18,10 @@ public class User {
 		this.name = jUser.getString("name");
 		this.username = jUser.getString("username");
 		this.email = jUser.getString("email");
-		//this.address = jUser.getJSONObject("address");
-		//this.address = new Address(jUser.getJSONObject("address"));
+		this.address = new Address(jUser.getJSONObject("address"));
 		this.phone = jUser.getString("phone");
 		this.website = jUser.getString("website");
-		//this.company = new Company(jUser.getJSONObject("company"));
+		this.company = new Company(jUser.getJSONObject("company"));
 	}
 
 	public int getId() {
@@ -92,7 +91,7 @@ public class User {
 	public String getFullDescription() {
 		return ("id:" + id + "|" + "name:" + name + "|" + "username:" + username + "|" + "email:" + email + "|"
 				+ "address:" + address + "|" + "phone:" + phone + "|" + "website:" + website + "|" + "company:"
-				+ company);
+				+ company.getFullDescription());
 
 	}
 }

@@ -28,4 +28,12 @@ public class Company {
 	public void setCatchPhrase(String catchPhrase) {
 		this.catchPhrase = catchPhrase;
 	}
+
+	public String toString() {
+		return super.toString();
+	}
+
+	public String getFullDescription() {
+		return ("name:" + name + "|" + "catchPhrase:" + catchPhrase);
+	}
 }

@@ -5,19 +5,23 @@ import org.json.JSONObject;
 public class Address {
 	private String street;
 	private String city;
-	private int zipcode;
-	private int lat;
-	private int lng;
-	
-	public char[] getFullDescription;
+	private String zipcode;
+	private JSONObject lat;
+	private JSONObject lng;
+	private JSONObject jGeo;
 
 	public Address(JSONObject jAddress) {
 		this.street = jAddress.getString("street");
-		this.city = jAddress.getString("address");
-		this.zipcode = jAddress.getInt("zipcode");
-		this.lat = jAddress.getInt("lat");
-		this.lng = jAddress.getInt("lng");
+		this.city = jAddress.getString("city");
+		this.zipcode = jAddress.getString("zipcode");
 	}
+
+	public void jGeo(JSONObject jGeo){
+			
+		this.lat = jGeo.getJSONObject("lat");
+		this.lng = jGeo.getJSONObject("lng");
+		}
+	
 
 	public String getStreet() {
 		return street;
@@ -35,27 +39,44 @@ public class Address {
 		this.city = city;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
-	public int getLat() {
+	public JSONObject getLat() {
 		return lat;
 	}
 
-	public void setLat(int lat) {
+	public void setLat(JSONObject lat) {
 		this.lat = lat;
 	}
 
-	public int getLng() {
+	public JSONObject getLng() {
 		return lng;
 	}
 
-	public void setLng(int lng) {
+	public void setLng(JSONObject lng) {
 		this.lng = lng;
+	}
+
+	public String toString() {
+		return super.toString();
+	}
+
+	public String getFullDescription(String string) {
+		return ("street:" + street + "|" + "zipcode:" + zipcode + "|" + "city:" + city + "|" + "lat:" + lat + "|"
+				+ "lng:" + lng);
+	}
+
+	public JSONObject getjGeo() {
+		return jGeo;
+	}
+
+	public void setjGeo(JSONObject jGeo) {
+		this.jGeo = jGeo;
 	}
 }

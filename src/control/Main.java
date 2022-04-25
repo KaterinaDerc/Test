@@ -12,7 +12,6 @@ import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import model.Address;
 import model.User;
 
 public class Main {
@@ -217,10 +216,8 @@ public class Main {
 				JSONObject jUser = jArray.getJSONObject(i);
 
 				User user = new User(jUser);
-				
 
 				System.out.println(user.getFullDescription());
-				//System.out.println(street);
 
 			}
 		}
