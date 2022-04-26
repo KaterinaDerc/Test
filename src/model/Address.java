@@ -6,22 +6,16 @@ public class Address {
 	private String street;
 	private String city;
 	private String zipcode;
-	private JSONObject lat;
-	private JSONObject lng;
-	private JSONObject jGeo;
+	private String lat;
+	private String lng;
 
 	public Address(JSONObject jAddress) {
 		this.street = jAddress.getString("street");
 		this.city = jAddress.getString("city");
 		this.zipcode = jAddress.getString("zipcode");
+		this.lat = jAddress.getJSONObject("geo").getString("lat");
+		this.lng=jAddress.getJSONObject("geo").getString("lng");
 	}
-
-	public void jGeo(JSONObject jGeo){
-			
-		this.lat = jGeo.getJSONObject("lat");
-		this.lng = jGeo.getJSONObject("lng");
-		}
-	
 
 	public String getStreet() {
 		return street;
@@ -47,19 +41,19 @@ public class Address {
 		this.zipcode = zipcode;
 	}
 
-	public JSONObject getLat() {
+	public String getLat() {
 		return lat;
 	}
 
-	public void setLat(JSONObject lat) {
+	public void setLat(String lat) {
 		this.lat = lat;
 	}
 
-	public JSONObject getLng() {
+	public String getLng() {
 		return lng;
 	}
 
-	public void setLng(JSONObject lng) {
+	public void setLng(String lng) {
 		this.lng = lng;
 	}
 
@@ -72,11 +66,4 @@ public class Address {
 				+ "lng:" + lng);
 	}
 
-	public JSONObject getjGeo() {
-		return jGeo;
-	}
-
-	public void setjGeo(JSONObject jGeo) {
-		this.jGeo = jGeo;
-	}
 }

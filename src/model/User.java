@@ -23,7 +23,7 @@ public class User {
 		this.phone = jUser.getString("phone");
 		this.website = jUser.getString("website");
 		this.company = new Company(jUser.getJSONObject("company"));
-		// this.street=jUser.getString("street");
+		
 	}
 
 	public int getId() {
