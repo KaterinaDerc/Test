@@ -5,26 +5,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+
+import model.User;
 
 public class NetworkManager {
 
-	public static Object ListStudentList() {
 
-		return null;
-	}
+	public static ArrayList<User> getStudentList() throws Exception {
 
-	public static void showNetworkUsers() throws IOException {
-
-		System.out.print("Список пользователей интернета: ");
-
+		ArrayList<User> result = new ArrayList<User>();
+		
 		String studentUrl = "https://jsonplaceholder.typicode.com/users";
 
 		URL url = new URL(studentUrl);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		System.out.println("getResponseCode:" + connection.getResponseCode());
 
 		int responseCode = connection.getResponseCode();
 		if (responseCode == 200) {
@@ -41,7 +41,20 @@ public class NetworkManager {
 			}
 
 			JSONArray jArray = new JSONArray(stringBuilder.toString());
-			System.out.print(jArray);
+
+			for (int i = 0; i < jArray.length(); i++) {
+				JSONObject jUser = jArray.getJSONObject(i);
+
+				User user = new User(jUser);
+
+				result.add(user);
+
+			}
+		} else {
+			System.out.println("no InfoforStudent");
 		}
+		
+		return result;
+
 	}
 }

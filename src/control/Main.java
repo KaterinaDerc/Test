@@ -20,7 +20,7 @@ public class Main {
 	static Scanner scannerforStr;
 	static Scanner scannerforInt;
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws Exception {
 		initArray();
 		scannerforInt = new Scanner(System.in).useDelimiter("\n");
 		scannerforStr = new Scanner(System.in).useDelimiter("\n");
@@ -189,43 +189,12 @@ public class Main {
 
 	}
 
-	public static void showNetworkUsers() throws IOException {
+	public static void showNetworkUsers() throws Exception {
 
-		String studentUrl = "https://jsonplaceholder.typicode.com/users";
-
-		URL url = new URL(studentUrl);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-		int responseCode = connection.getResponseCode();
-		if (responseCode == 200) {
-
-			InputStream inputStream = connection.getInputStream();
-			InputStreamReader inputReader = new InputStreamReader(inputStream);
-			BufferedReader buffer = new BufferedReader(inputReader);
-			StringBuilder stringBuilder = new StringBuilder();
-
-			String outputFromBuff;
-			while ((outputFromBuff = buffer.readLine()) != null) {
-				stringBuilder.append(outputFromBuff);
-
-			}
-
-			JSONArray jArray = new JSONArray(stringBuilder.toString());
-
-			for (int i = 0; i < jArray.length(); i++) {
-				JSONObject jUser = jArray.getJSONObject(i);
-
-				User user = new User(jUser);
-
-				System.out.println(user.getFullDescription());
-
-			}
+		ArrayList<User> userList = NetworkManager.getStudentList();
+		for (int i = 0; i < studentList.size(); i++) {
+			System.out.println(userList);
 		}
-
-		else {
-			System.out.println("no InfoforStudent");
-		}
-
 	}
 
 	static void exitApp() {
